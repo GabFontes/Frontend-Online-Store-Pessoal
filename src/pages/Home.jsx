@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default class Home extends React.Component {
   // constructor(){
@@ -15,6 +16,7 @@ export default class Home extends React.Component {
             <input tupe="text" />
           </label>
         </form>
+        <Link data-testid="shopping-cart-button" to="/cart">Cart</Link>
       </div>
     );
   }
