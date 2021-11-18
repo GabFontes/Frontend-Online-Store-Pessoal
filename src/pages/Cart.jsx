@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Cart extends Component {
   render() {
@@ -7,6 +7,6 @@ export default class Cart extends Component {
         <h1>Carrinho de Compras</h1>
         <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
       </div>
-    )
+    );
   }
 }
