@@ -4,7 +4,7 @@ import './App.css';
 import Home from './pages/Home';
 // import { render } from '@testing-library/react';
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     return (
       <div>
@@ -18,5 +18,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;
