@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
 
 export default class Home extends React.Component {
   // constructor(){
-  // }
+  //
 
   render() {
     return (
@@ -13,10 +14,11 @@ export default class Home extends React.Component {
         </h3>
         <form>
           <label htmlFor="input-search">
-            <input tupe="text" />
+            <input type="text" />
           </label>
         </form>
         <Link data-testid="shopping-cart-button" to="/cart">Cart</Link>
+        <Sidebar />
       </div>
     );
   }
