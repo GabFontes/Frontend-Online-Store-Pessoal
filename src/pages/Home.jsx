@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar';
 
 export default class Home extends React.Component {
   // constructor(){
-  // 
+  //
 
   render() {
     return (
