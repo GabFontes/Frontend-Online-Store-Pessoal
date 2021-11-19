@@ -1,39 +1,46 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ProductsList from '../components/ProductsList';
+import ShopItem from '../components/ShopItems';
 import Sidebar from '../components/Sidebar';
 import * as api from '../services/api';
 
 export default class Home extends React.Component {
   constructor() {
     super();
-
-    this.productsFetch = this.productsFetch.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
+    this.searchApi = this.searchApi.bind(this);
     this.state = {
-      products: [],
       query: '',
       categoryId: '',
+      search: [],
     };
   }
 
-  handleChange({ target: { value } }) {
+  handleChange({ target }) {
+    const { value } = target;
     this.setState({
       query: value,
     });
   }
 
-  async productsFetch() {
-    const { categoryId, query } = this.state;
-    const products = await api.getProductsFromCategoryAndQuery(categoryId, query);
+  async searchApi() {
+    const { query, categoryId, search } = this.state;
+    const searchResults = await api.getProductsFromCategoryAndQuery(
+      categoryId,
+      query,
+    );
     this.setState({
-      products,
+      search: searchResults,
     });
+    console.log(search);
   }
 
   render() {
-    const { query, products: { results } } = this.state;
+    const {
+      search: { results },
+    } = this.state;
+    // console.log(query);
+
     return (
       <div>
         <h3 data-testid="home-initial-message">
@@ -42,11 +49,18 @@ export default class Home extends React.Component {
         <form>
           <label htmlFor="input-search">
             <input
-              onChange={ this.handleChange }
-              value={ query }
               data-testid="query-input"
+              onChange={ this.handleChange }
+              name="querry"
               type="text"
             />
+            <button
+              data-testid="query-button"
+              type="button"
+              onClick={ this.searchApi }
+            >
+              pesquise
+            </button>
           </label>
           <button
             type="button"
@@ -56,12 +70,12 @@ export default class Home extends React.Component {
             Pesquisar
           </button>
         </form>
-        <Link data-testid="shopping-cart-button" to="/cart">Cart</Link>
+        <Link data-testid="shopping-cart-button" to="/cart">
+          Cart
+        </Link>
         <Sidebar />
-        {results && results.map((result) => (<ProductsList
-          key={ result.id }
-          product={ result }
-        />))}
+        {results && results
+          .map((result) => <ShopItem key={ result.id } card={ result } />)}
       </div>
     );
   }
