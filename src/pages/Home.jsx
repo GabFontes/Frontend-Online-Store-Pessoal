@@ -7,8 +7,10 @@ import * as api from '../services/api';
 export default class Home extends React.Component {
   constructor() {
     super();
+
     this.handleChange = this.handleChange.bind(this);
     this.searchApi = this.searchApi.bind(this);
+
     this.state = {
       query: '',
       categoryId: '',
@@ -24,7 +26,7 @@ export default class Home extends React.Component {
   }
 
   async searchApi() {
-    const { query, categoryId, search } = this.state;
+    const { query, categoryId } = this.state;
     const searchResults = await api.getProductsFromCategoryAndQuery(
       categoryId,
       query,
@@ -32,14 +34,12 @@ export default class Home extends React.Component {
     this.setState({
       search: searchResults,
     });
-    console.log(search);
   }
 
   render() {
     const {
       search: { results },
     } = this.state;
-    // console.log(query);
 
     return (
       <div>
@@ -62,16 +62,9 @@ export default class Home extends React.Component {
               pesquise
             </button>
           </label>
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={ this.productsFetch }
-          >
-            Pesquisar
-          </button>
         </form>
         <Link data-testid="shopping-cart-button" to="/cart">
-          Cart
+          Ir para o Carrinho
         </Link>
         <Sidebar />
         {results && results
