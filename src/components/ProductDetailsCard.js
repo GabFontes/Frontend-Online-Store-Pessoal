@@ -17,6 +17,20 @@ export default class ProductDetailsCard extends Component {
     this.getProductById();
   }
 
+  setIdsInLocalStorage(title, price, thumbnail) {
+    let storageIds = [];
+    if (localStorage.hasOwnProperty.call('arrayInfo')) {
+      storageIds = JSON.parse(localStorage.getItem('arrayInfo'));
+    }
+    const storageInfo = {
+      title,
+      price,
+      thumbnail,
+    };
+    storageIds.push(storageInfo);
+    localStorage.setItem('arrayInfo', JSON.stringify(storageIds));
+  }
+
   async getProductById() {
     const { match: { params: { id } } } = this.props;
     fetch(`https://api.mercadolibre.com/items/${id}`)
@@ -54,7 +68,16 @@ export default class ProductDetailsCard extends Component {
         </p>
         <p>{warranty}</p>
         <img src={ thumbnail } alt={ title } />
-        <Link to="/cart">Ir para o Carrinho</Link>
+        <Link data-testid="shopping-cart-button" to="/cart">
+          Ir para o Carrinho
+        </Link>
+        <button
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ () => this.setIdsInLocalStorage(title, price, thumbnail) }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }

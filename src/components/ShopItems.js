@@ -3,6 +3,21 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class ShopItem extends Component {
+  setIdsInLocalStorage(title, price, thumbnail) {
+    let storageIds = [];
+    if (localStorage.hasOwnProperty.call('arrayInfo')) {
+      // https://stackoverflow.com/questions/39282873/how-do-i-access-the-object-prototype-method-in-the-following-logic
+      storageIds = JSON.parse(localStorage.getItem('arrayInfo'));
+    }
+    const storageInfo = {
+      title,
+      price,
+      thumbnail,
+    };
+    storageIds.push(storageInfo);
+    localStorage.setItem('arrayInfo', JSON.stringify(storageIds));
+  }
+
   render() {
     const { card: { thumbnail, title, price, id } } = this.props;
     return (
@@ -17,6 +32,13 @@ class ShopItem extends Component {
         >
           Ver Detalhes do Produto
         </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ () => this.setIdsInLocalStorage(title, price, thumbnail) }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }
