@@ -9,6 +9,7 @@ export default class Home extends React.Component {
     super();
     this.handleChange = this.handleChange.bind(this);
     this.searchApi = this.searchApi.bind(this);
+    this.setCategory = this.setCategory.bind(this);
     this.state = {
       query: '',
       categoryId: '',
@@ -21,6 +22,12 @@ export default class Home extends React.Component {
     this.setState({
       query: value,
     });
+  }
+
+  async setCategory(ID) {
+    this.setState({
+      categoryId: ID,
+    }, this.searchApi);
   }
 
   async searchApi() {
@@ -66,7 +73,9 @@ export default class Home extends React.Component {
         <Link data-testid="shopping-cart-button" to="/cart">
           Cart
         </Link>
-        <Sidebar />
+        <Sidebar
+          setCategory={ this.setCategory }
+        />
         {results && results
           .map((result) => <ShopItem key={ result.id } card={ result } />)}
       </div>
