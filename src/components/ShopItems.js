@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
-import Cart from '../pages/Cart';
+import { Link } from 'react-router-dom';
 
 class ShopItem extends Component {
   render() {
-    const { card: { thumbnail, title, price, id }} = this.props;
+    const { card: { thumbnail, title, price, id } } = this.props;
     return (
       <div data-testid="product" className="productCard">
         <img src={ thumbnail } alt={ title } />
@@ -18,7 +17,6 @@ class ShopItem extends Component {
         >
           Ver Detalhes do Produto
         </Link>
-        <button onClick={<> <Link to="/cart" /> </>} type="button">Adicionar ao Carrinho</button>
       </div>
     );
   }

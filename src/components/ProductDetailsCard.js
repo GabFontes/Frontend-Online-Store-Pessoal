@@ -35,11 +35,11 @@ export default class ProductDetailsCard extends Component {
         price,
         thumbnail,
         warranty,
-      }
+      },
     } = this.state;
     return (
       <div>
-        <h4 product-detail-name="product-detail-name">{title}</h4>
+        <h4 data-testid="product-detail-name">{title}</h4>
         <span>
           R$
           {price}
