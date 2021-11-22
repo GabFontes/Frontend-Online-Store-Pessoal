@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as api from '../services/api';
 
 export default class Sidebar extends Component {
@@ -17,6 +18,7 @@ export default class Sidebar extends Component {
   }
 
   async categoriesList() {
+    const { setCategory } = this.props;
     const categories = await api.getCategories();
     this.setState({
       categories: categories.map((categoria) => (
@@ -29,6 +31,8 @@ export default class Sidebar extends Component {
             name="category"
             type="radio"
             id={ categoria.id }
+            value={ categoria.id }
+            onClick={ () => setCategory(categoria.id) }
           />
           {categoria.name}
         </label>
@@ -41,9 +45,13 @@ export default class Sidebar extends Component {
     return (
       <div>
         <form>
-          {categories}
+          { categories }
         </form>
       </div>
     );
   }
 }
+
+Sidebar.propTypes = {
+  setCategory: PropTypes.func.isRequired,
+};
