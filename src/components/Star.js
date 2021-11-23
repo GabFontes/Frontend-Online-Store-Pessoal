@@ -9,10 +9,9 @@ class Star extends React.Component {
       <div>
         {/* https://www.youtube.com/watch?v=eDw46GYAIDQ */}
         {[...Array(array)].map((_star, index) => {
-          const ratingValue = index + 1;
           return (
             <label htmlFor={ index } key={ index }>
-              <input type="radio" name="rating" id={ index } value={ ratingValue } />
+              <input type="radio" name="rating" id={ index }/>
               <FaStar className="star" size={ 30 } />
             </label>
           );
