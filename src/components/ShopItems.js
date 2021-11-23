@@ -5,14 +5,15 @@ import { Link } from 'react-router-dom';
 class ShopItem extends Component {
   setIdsInLocalStorage(title, price, thumbnail) {
     let storageIds = [];
-    if (localStorage.hasOwnProperty.call('arrayInfo')) {
-      // https://stackoverflow.com/questions/39282873/how-do-i-access-the-object-prototype-method-in-the-following-logic
+    if (localStorage.getItem('arrayInfo')) {
       storageIds = JSON.parse(localStorage.getItem('arrayInfo'));
+      console.log('belesma');
     }
     const storageInfo = {
       title,
       price,
       thumbnail,
+      itemQuant: 1,
     };
     storageIds.push(storageInfo);
     localStorage.setItem('arrayInfo', JSON.stringify(storageIds));
