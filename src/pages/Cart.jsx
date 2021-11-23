@@ -39,23 +39,33 @@ export default class Cart extends Component {
               <img src={ info.thumbnail } alt={ info.title } />
               <p>{info.price}</p>
               {/* ideia do arrow f. dentro do onclick: https://stackoverflow.com/questions/30626030/can-you-force-a-react-component-to-rerender-without-calling-setstate/  */}
-              <button 
-                onClick={() => {
+              <button
+                onClick={ () => {
                   info.itemQuant += 1;
                   this.forceUpdate();
-                }}
-                type="button" data-testid="product-increase-quantity">+</button>
+                } }
+                type="button"
+                data-testid="product-increase-quantity"
+              >
+                +
+
+              </button>
               <p data-testid="shopping-cart-product-quantity">{ info.itemQuant }</p>
               <button
-                 onClick={() => {
-                  if (info.itemQuant < 1 ) {
-                    info.itemQuant = 0
+                onClick={ () => {
+                  if (info.itemQuant === 0) {
+                    info.itemQuant = 0;
                   } else {
                     info.itemQuant -= 1;
                   }
                   this.forceUpdate();
-                }}
-               type data-testid="product-decrease-quantity">-</button>
+                } }
+                type="button"
+                data-testid="product-decrease-quantity"
+              >
+                -
+
+              </button>
             </div>
           ))}
       </div>
