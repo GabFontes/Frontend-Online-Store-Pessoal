@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Form from './Form';
 
 export default class ProductDetailsCard extends Component {
   constructor() {
@@ -80,6 +81,7 @@ export default class ProductDetailsCard extends Component {
         >
           Adicionar ao Carrinho
         </button>
+        <Form />
       </div>
     );
   }
