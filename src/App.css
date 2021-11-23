@@ -1,15 +1,8 @@
-<<<<<<< HEAD
-input[type="radio"] {
-=======
-.input {
->>>>>>> 4f9458a54b1f909dbd99fa956b7f511cbb0723ab
+input[ type = "radio" ] {
   display: none;
 }
 
 .star {
   cursor: pointer;
-<<<<<<< HEAD
   transition: color 200ms;
-=======
->>>>>>> 4f9458a54b1f909dbd99fa956b7f511cbb0723ab
 }
