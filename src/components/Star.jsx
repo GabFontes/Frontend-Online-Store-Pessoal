@@ -9,7 +9,7 @@ class Star extends React.Component {
       <div>
         {[...Array(array)].map((_star, index) => (
           <label htmlFor={ index } key={ index }>
-            <input type="radio" name="rating" id={ index } />
+            <input className="input" type="radio" name="rating" id={ index } />
             <FaStar className="star" size={ 30 } />
           </label>
         ))}
